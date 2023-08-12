@@ -14,53 +14,55 @@ public class ConstructorPage {
     private static final By sauceSegment = By.xpath(".//h2[text()='Соусы']");
     private static final By fillingSegment = By.xpath(".//h2[text()='Начинки']");
     private final WebDriver driver;
-    private final By bunHeader = By.xpath(".//div/span[text()='Булки']");
-    private final By sauceHeader = By.xpath(".//div/span[text()='Соусы']");
-    private final By fillingHeader = By.xpath(".//div/span[text()='Начинки']");
-
+    private final By bunTabDefault = By.xpath(".//div/span[text()='Булки']");
+    private final By sauceTabDefault = By.xpath(".//div/span[text()='Соусы']");
+    private final By fillingTabDefault = By.xpath(".//div/span[text()='Начинки']");
+    private final By bunTabNoSelect = By.xpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Булки']");
+    private final By sauceTabNoSelect = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[1]/div[2]/span[text()='Соусы']");
+    private final By fillingTabNoSelect = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[1]/div[3]/span[text()='Начинки']");
     public ConstructorPage(WebDriver driver) {
         this.driver = driver;
     }
 
     @Step("Клик на Булки")
-    public void clickBunSegment() {
+    public void clickBunTab() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOfElementLocated(bunHeader));
-        driver.findElement(bunHeader).click();
+                .until(ExpectedConditions.visibilityOfElementLocated(bunTabDefault));
+        driver.findElement(bunTabDefault).click();
     }
 
     @Step("Клик на Соусы")
-    public void clickSauceSegment() {
+    public void clickSauceTab() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOfElementLocated(sauceHeader));
-        driver.findElement(sauceHeader).click();
+                .until(ExpectedConditions.visibilityOfElementLocated(sauceTabDefault));
+        driver.findElement(sauceTabDefault).click();
     }
 
     @Step("Клик на Начинки")
-    public void clickFillingSegment() {
+    public void clickFillingTab() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOfElementLocated(fillingHeader));
-        driver.findElement(fillingHeader).click();
+                .until(ExpectedConditions.visibilityOfElementLocated(fillingTabDefault));
+        driver.findElement(fillingTabDefault).click();
     }
 
-    @Step("Булки отображаются")
-    public boolean isBunSegmentDisplayed() {
+    @Step("Вкладка Булки активна")
+    public boolean isBunTabActivated() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOfElementLocated(bunSegment));
-        return driver.findElement(bunSegment).isDisplayed();
+                .until(ExpectedConditions.visibilityOfElementLocated(bunTabNoSelect));
+        return driver.findElement(bunTabNoSelect).isDisplayed();
     }
 
-    @Step("Соусы отображаются")
-    public boolean isSauceSegmentDisplayed() {
+    @Step("Вкладка Соусы активна")
+    public boolean isSauceTabActivated() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOfElementLocated(sauceSegment));
-        return driver.findElement(sauceSegment).isDisplayed();
+                .until(ExpectedConditions.visibilityOfElementLocated(sauceTabNoSelect));
+        return driver.findElement(sauceTabNoSelect).isDisplayed();
     }
 
-    @Step("Начинки отображается")
-    public boolean isFillingSegmentDisplayed() {
+    @Step("Вкладка Начинки активна")
+    public boolean isFillingTabDisplayed() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOfElementLocated(fillingSegment));
-        return driver.findElement(fillingSegment).isDisplayed();
+                .until(ExpectedConditions.visibilityOfElementLocated(fillingTabNoSelect));
+        return driver.findElement(fillingTabNoSelect).isDisplayed();
     }
 }

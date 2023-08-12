@@ -9,9 +9,9 @@ public class RegistrationTest extends TestsWithoutAuth {
     public void registrationTest() {
         LoginPage page = new LoginPage(driver);
         page.gotoRegistrationPage();
-        page.registerNewAccount("roman", "rkostyuk123@gmail.com", "Zxc567Zxc");
+        page.registerNewAccount(name, email, password);
         Assert.assertTrue(page.isLogButtonDisplayed());
-        userClient.delete("rkostyuk@gmail.com", "qwerty45678");
+        userClient.delete(email, password);
     }
 
     @Test
@@ -19,7 +19,7 @@ public class RegistrationTest extends TestsWithoutAuth {
     public void registrationWithWrongPasswordTest() {
         LoginPage page = new LoginPage(driver);
         page.gotoRegistrationPage();
-        page.registerNewAccount("roman", "rkostyuk123@gmail.com", "1");
+        page.registerNewAccount(name, email, "1");
         Assert.assertTrue(page.isIncorrectPasswordDisplayed());
     }
 }
