@@ -6,11 +6,19 @@ import pages.ConstructorPage;
 
 public class ConstructorTest extends TestsWithoutAuth {
     @Test
+    @DisplayName("Переход к Булки")
+    public void BunTabActivatedTest() {
+        ConstructorPage page = new ConstructorPage(driver);
+        page.clickFillingTab();
+        page.clickBunTab();
+        Assert.assertTrue(page.getSelectedSection().contains("Булки"));
+    }
+    @Test
     @DisplayName("Переход к Начинки")
     public void fillingTabActivatedTest() {
         ConstructorPage page = new ConstructorPage(driver);
         page.clickFillingTab();
-        Assert.assertTrue(page.isFillingTabDisplayed());
+        Assert.assertTrue(page.getSelectedSection().contains("Начинки"));
     }
 
     @Test
@@ -18,13 +26,13 @@ public class ConstructorTest extends TestsWithoutAuth {
     public void sauceTabActivatedTest() {
         ConstructorPage page = new ConstructorPage(driver);
         page.clickSauceTab();
-        Assert.assertTrue(page.isSauceTabActivated());
+        Assert.assertTrue(page.getSelectedSection().contains("Соусы"));
     }
 
     @Test
     @DisplayName("Раздел Булки активен по умолчанию")
     public void bunSectionActivatedByDefaultTest() {
         ConstructorPage page = new ConstructorPage(driver);
-        Assert.assertTrue(page.isBunTabActivated());
+        Assert.assertTrue(page.getSelectedSection().contains("Булки"));
     }
 }

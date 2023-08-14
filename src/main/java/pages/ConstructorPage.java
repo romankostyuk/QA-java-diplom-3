@@ -10,14 +10,15 @@ import java.time.Duration;
 
 
 public class ConstructorPage {
-    private static final By bunSegment = By.xpath(".//h2[text()='Булки']");
-    private static final By sauceSegment = By.xpath(".//h2[text()='Соусы']");
-    private static final By fillingSegment = By.xpath(".//h2[text()='Начинки']");
+    //private static final By bunSegment = By.xpath(".//h2[text()='Булки']");
+    //private static final By sauceSegment = By.xpath(".//h2[text()='Соусы']");
+    //private static final By fillingSegment = By.xpath(".//h2[text()='Начинки']");
+    private static final By selectedTab = By.xpath(".//div[contains(@class, 'tab_tab_type_current__2BEPc')]");
     private final WebDriver driver;
     private final By bunTabDefault = By.xpath(".//div/span[text()='Булки']");
     private final By sauceTabDefault = By.xpath(".//div/span[text()='Соусы']");
     private final By fillingTabDefault = By.xpath(".//div/span[text()='Начинки']");
-    private final By bunTabNoSelect = By.xpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Булки']");
+    private final By bunTabNoSelect = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[1]/div[2]/span[text()='Булки']");
     private final By sauceTabNoSelect = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[1]/div[2]/span[text()='Соусы']");
     private final By fillingTabNoSelect = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[1]/div[3]/span[text()='Начинки']");
     public ConstructorPage(WebDriver driver) {
@@ -64,5 +65,9 @@ public class ConstructorPage {
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(fillingTabNoSelect));
         return driver.findElement(fillingTabNoSelect).isDisplayed();
+    }
+
+    public String getSelectedSection() {
+        return driver.findElement(selectedTab).getText();
     }
 }
